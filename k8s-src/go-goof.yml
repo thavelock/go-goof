@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-goof
+  labels:
+    app: go-goof
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8082
+      targetPort: 8082
+      protocol: TCP
+  selector:
+    app: go-goof
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-goof
+  labels:
+    app: go-goof
+spec:
+  selector:
+    matchLabels:
+      app: go-goof
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-goof
+    spec:
+      containers:
+      - name: go-goof
+        image: troysnyk/go-goof:1.0.0
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "500Mi"
+        ports:
+        - containerPort: 8082
+        securityContext:
+          privileged: true
