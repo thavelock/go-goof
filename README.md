@@ -47,3 +47,5 @@ test -d "${GOPATH}" || mkdir "${GOPATH}"
 brew install go
 ```
 Don't forget to update your `.bashrc` or `.zshrc`
+
+
