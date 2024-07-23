@@ -1,0 +1,23 @@
+name: Snyk Open Source Test
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  open-source-test:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout Repo
+          uses: actions/checkout@master
+
+        - name: Test Open Source Dependencies with Snyk
+          uses: snyk/actions/golang@master
+          env:
+            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          with:
+            command: test
+            args: --all-projects
