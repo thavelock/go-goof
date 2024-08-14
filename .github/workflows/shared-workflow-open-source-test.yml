@@ -1,0 +1,13 @@
+name: Invoke Shared Workflow - Snyk Open Source Test
+
+on:
+    workflow_dispatch:
+    workflow_call:
+    push:
+      branches:
+        - 'master'
+
+jobs:
+    call-shared-workflow:
+        uses: somerset-inc/somerset-workflows/.github/workflows/snyk-opensource-go.yml@v1
+        secrets: inherit
