@@ -10,4 +10,3 @@ on:
 jobs:
     call-shared-workflow:
         uses: somerset-inc/somerset-workflows/.github/workflows/snyk-opensource-go.yml@main
-        secrets: inherit
